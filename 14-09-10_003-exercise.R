@@ -97,7 +97,7 @@ a$myAim
 str(a$myAim)
 
 
-##creating a data.fram explicitly
+##creating a data.frame explicitly
 set.seed(1)
 (jDat <- data.frame(w = round(rnorm(n), 2),
                     x = 1:n,
@@ -111,3 +111,99 @@ is.list(jDat)
 jDat[5]
 jDat$v
 jDat[c("x", "z")]
+
+(x <- c("cabbage", pi, T, 4.3))
+str(x)
+
+n <- 8
+set.seed(1)
+(w <- round(rnorm(n), 2))
+(x <- 1:n)
+(y <- LETTERS[1:n])
+(z <- runif(n)>0.3)
+?runif
+str(w)
+is.logical(y)
+as.numeric(z)
+(znum <- as.numeric(z))
+str(znum)
+
+names(w) <- letters[seq_along(w)]
+str(w)
+w<0
+which(w>0)
+w[w>0]
+seq(from = 1, to = length(w), by = 2)
+w[seq(from = 1, to = length(w), by = 2)]
+w[-c(2, 5)]
+w[c('c', 'a', 'f')]
+
+
+(a <- list("cabbage", pi, T, 4.3))
+str(a)
+mode(a)
+class(a)
+names(a)
+names(a) <- c("veg", "dessert", "myAim", "number")
+a
+
+a <- list(veg = "cabbage", dessert = pi, myAim = T, number = 4.3)
+names(a)
+
+(a <- list(veg = c("cabbage", "eggplant"),
+          tNum = c(pi, exp(1), sqrt(2)),
+          myAim = T,
+          joeNum = 2:6))
+str(a)
+
+a[[2]]
+a[2]
+a$myAim
+str(a$myAim)
+a[["tNum"]]
+
+iWantThis <- "joeNum"
+a[[iWantThis]]
+a[[c("joeNum", "veg")]]
+
+names(a)
+a[c("tNum", "veg")]
+
+
+set.seed(1)
+(jDat <- data.frame(w = round(rnorm(n), 2),
+                    x = 1:n,
+                    y = I(LETTERS[1:n]),
+                    z = runif(n) > 0.3,
+                    v = rep(LETTERS[9:12], each = 2)))
+str(jDat)
+is.list(jDat)
+jDat[[5]]
+jDat$v
+
+identical(subset(jDat, select = c(x, z)), jDat[c("x", "z")])
+
+(qDat <- list(w = round(rnorm(n), 2),
+              x = 1:(n-1),
+              y = I(LETTERS[1:n])))
+as.data.frame(qDat)
+qDat$x <- 1:n
+qDat <- as.data.frame(qDat)
+
+
+jMat <- outer(as.character(1:4), as.character(1:4),
+              function(x,y) {
+                paste0('x', x, y)
+              })
+jMat
+str(jMat)
+rownames(jMat)
+rownames(jMat) <- paste0("row", seq_len(nrow(jMat)))
+colnames(jMat) <- paste0("col", seq_len(ncol(jMat)))
+colnames(jMat)
+dimnames(jMat)
+jMat[2, 3]
+jMat[2, ]
+is.vector(jMat[2, ])
+jMat[ , 3, drop = F]
+dim(jMat[ , 3, drop = F])
