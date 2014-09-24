@@ -207,3 +207,6 @@ jMat[2, ]
 is.vector(jMat[2, ])
 jMat[ , 3, drop = F]
 dim(jMat[ , 3, drop = F])
+
+
+matrix(1:15, nrow = 5)
