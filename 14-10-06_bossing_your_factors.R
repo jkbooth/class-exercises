@@ -48,12 +48,14 @@ iDat <- h_dat %>%
 
 ggplot(maxlf, aes(x = country, y = max_life, group = 1)) + geom_path() + geom_point(size = 3)
 #grouping lets you connect the dots
-ggplot(iDat, aes(x = year, y = lifeExp, group = country)) + geom_line(aes(colour = country))
+ggplot(iDat, aes(x = year, y = lifeExp, group = country)) + geom_line(aes(colour = country))+
+   theme_bw() + guides(colour = guide_legend(reverse = T))
 
 #let's talk about reorder
 #reorder(factor, quant_var, summarizationfunction)
 #summarization function defaults to mean
-ggplot(maxlf, aes(x = country, y = max_life, group = 1)) + geom_path() + geom_point(size = 3)
+ggplot(maxlf, aes(x = country, y = max_life, group = 1)) + geom_path() +
+  geom_point(size = 3) + theme_bw()
 
 jDat <- iDat %>%
   mutate(country = reorder(country, lifeExp, max))
@@ -63,4 +65,5 @@ data.frame(before = levels(iDat$country),
 (maxlf2 <- jDat %>%
    group_by(country) %>%
    summarize(max_life = max(lifeExp)))
-ggplot(maxlf2, aes(x = country, y = max_life, group = 1)) + geom_path() + geom_point(size = 3)
+ggplot(maxlf2, aes(x = country, y = max_life, group = 1)) + geom_path() + geom_point(size = 3) +
+  theme_bw()
