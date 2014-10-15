@@ -1,0 +1,3 @@
+source("gapminderstartup.R")
+
+
