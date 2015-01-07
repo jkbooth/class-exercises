@@ -1,3 +1,2 @@
-source("gapminderstartup.R")
 
 
