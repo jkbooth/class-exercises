@@ -76,9 +76,29 @@ summary(weeDat$devStage)
 #I'll use the numeric subset I created earlier
 subset(subnum, sample == c(16, 36))
 
-#Which samples have eggBomb expresion less than the 0.1 quantile
+#Which samples have eggBomb expression less than the 0.1 quantile
 eggquant <- quantile(prDat$eggBomb, probs = 0.1)
 names(eggquant) <- NULL
 
 (weeegg <- subset(prDat, eggBomb < eggquant))
 weeegg$sample
+
+
+##Bonus: do the indexing and subsetting using dplyr
+library(plyr)
+suppressMessages(library(dplyr))
+
+#subset of samples where poisonfang expression is >7.5
+weeDat2 <- prDat %>%
+  filter(poisonFang > 7.5)
+
+#Show gene expression data for 16 and 36
+
+prDat %>%
+  select(-devStage, -gType) %>%
+  filter(sample == c(16, 36))
+
+#Which samples have eggBomb expression less than the 0.1 quantile
+
+prDat %>%
+  filter(eggBomb < eggquant)
