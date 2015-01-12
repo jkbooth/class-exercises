@@ -3,6 +3,7 @@ prDat <- read.table(file = url, header = T, row.names = 1)
 write.table(prDat, "photoRec.txt")
 str(prDat)
 
+
 #how many rows are there?
 nrow(prDat)
 dim(prDat)
